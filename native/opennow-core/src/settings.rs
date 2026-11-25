@@ -264,7 +264,7 @@ impl SettingsStore {
                 .insert("microphoneDeviceId".to_owned(), json!(""));
         }
         if key == "themePack" {
-            let light = matches!(self.values[key].as_str(), Some("bone" | "cobalt"));
+            let light = matches!(self.values[key].as_str(), Some("bone" | "cobalt" | "neko"));
             self.values.insert(
                 "appTheme".to_owned(),
                 json!(if light { "light" } else { "dark" }),
@@ -603,9 +603,9 @@ impl SettingsStore {
             "themePack",
             &[
                 "default", "nocturne", "aurora", "kraft", "phosphor", "bone", "cobalt", "hibiscus",
-                "chapel",
+                "chapel", "neko", "rain", "fire",
             ],
-            "nocturne",
+            "neko",
         );
         normalize_choice(
             &mut self.values,
@@ -1443,7 +1443,7 @@ fn defaults() -> Map<String, Value> {
         "statsShowBitrate":true, "statsShowJitter":true, "statsShowDrops":true,
         "statsShowPacketLoss":true, "statsShowDecode":true, "statsShowLatency":true,
         "statsShowVideo":true, "statsShowClock":true, "statsShowGraphs":true,
-        "appAccentColor":"green", "appTheme":"auto", "appLanguage":"system", "themePack":"nocturne", "translucentUI":false,
+        "appAccentColor":"green", "appTheme":"auto", "appLanguage":"system", "themePack":"neko", "translucentUI":false,
         "showTileLabels":true,
         "controllerMode":true, "controllerModePromptDismissed":false, "forwardFlightControls":true,
         "controllerLeftStickDeadzone":5, "controllerRightStickDeadzone":5,
@@ -2600,7 +2600,7 @@ mod tests {
         let directory = env::temp_dir().join(format!("opennow-theme-policy-{unique}"));
         let mut store = SettingsStore::load(Some(directory.clone())).unwrap();
         for pack in [
-            "nocturne", "aurora", "kraft", "phosphor", "bone", "cobalt", "hibiscus", "chapel",
+            "nocturne", "aurora", "kraft", "phosphor", "bone", "cobalt", "hibiscus", "chapel", "neko", "rain", "fire",
         ] {
             store.set("appAccentColor", json!("rose")).unwrap();
             assert_eq!(store.all()["themeAccentOverride"], json!(true));
@@ -2610,7 +2610,7 @@ mod tests {
             assert_eq!(loaded.all()["themeAccentOverride"], json!(false));
             assert_eq!(
                 loaded.all()["appTheme"],
-                json!(if matches!(pack, "bone" | "cobalt") {
+                json!(if matches!(pack, "bone" | "cobalt" | "neko") {
                     "light"
                 } else {
                     "dark"
