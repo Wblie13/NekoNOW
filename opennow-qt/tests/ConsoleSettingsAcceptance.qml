@@ -74,7 +74,7 @@ QtObject {
 
     function checkResolutionPresets(parent) {
         const added = [
-            ["600x400", "LOW RESOLUTION"], ["640x360", "LOW RESOLUTION"], ["854x480", "LOW RESOLUTION"], ["960x540", "LOW RESOLUTION"], ["1024x576", "LOW RESOLUTION"],
+            ["600x400", "LOW"], ["640x360", "LOW"], ["854x480", "LOW"], ["960x540", "LOW"], ["1024x576", "LOW"],
             ["1112x834", "4:3"], ["1024x768", "4:3"], ["1366x768", "16:9"],
             ["1280x1024", "5:4"], ["1680x720", "21:9"], ["1600x1200", "4:3"], ["3456x2160", "16:10"],
             ["3640x1080", "CUSTOM"]
