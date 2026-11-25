@@ -1,0 +1,29 @@
+name: NekoNOW Linux package
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/nekonow-linux-build.yml"
+      - ".github/workflows/qt-build.yml"
+      - "opennow-qt/**"
+      - "native/opennow-core/**"
+      - "native/opennow-streamer/**"
+      - "locales/**"
+      - "THIRD_PARTY_NOTICES"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  linux-x64:
+    name: Build Linux x86_64 packages
+    uses: ./.github/workflows/qt-build.yml
+    with:
+      channel: nightly
+      upload_complete: false
+      update_public_key: ""
+      linux_arm64_host: native
+      platform: linux-x64
