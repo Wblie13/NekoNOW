@@ -20,7 +20,7 @@ ApplicationWindow {
     visible: true
     visibility: ApplicationWindow.Windowed
     color: "black"
-    title: qsTr("OpenNOW")
+    title: qsTr("NekoNOW")
     WindowTheme {
         id: windowTheme
         targetWindow: window
