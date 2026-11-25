@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - ".github/workflows/nekonow-linux-build.yml"
-      - ".github/workflows/qt-build.yml"
       - "opennow-qt/**"
       - "native/opennow-core/**"
       - "native/opennow-streamer/**"
@@ -20,10 +19,83 @@ permissions:
 jobs:
   linux-x64:
     name: Build Linux x86_64 packages
-    uses: ./.github/workflows/qt-build.yml
-    with:
-      channel: nightly
-      upload_complete: false
-      update_public_key: ""
-      linux_arm64_host: native
-      platform: linux-x64
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    env:
+      CARGO_TERM_COLOR: always
+      SDL_VERSION: release-3.2.20
+      OPENNOW_UPDATE_PUBLIC_KEY: ""
+    steps:
+      - name: Checkout NekoNOW
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: Set package version
+        id: metadata
+        shell: bash
+        run: |
+          version=$(python3 opennow-qt/packaging/nightly_release.py version \
+            --run "$GITHUB_RUN_NUMBER" --attempt "$GITHUB_RUN_ATTEMPT" --channel nightly)
+          echo "OPENNOW_BUILD_VERSION=$version" >> "$GITHUB_ENV"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Install Qt 6.8
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.8.3"
+          host: linux
+          target: desktop
+          arch: linux_gcc_64
+          modules: qtmultimedia qtshadertools qtwaylandcompositor
+          cache: true
+          cache-key-prefix: nekonow-qt-linux-x64
+
+      - name: Install Linux media dependencies
+        uses: ./.github/actions/linux-dependencies
+        with:
+          arch: x86_64
+
+      - name: Build SDL3
+        uses: ./.github/actions/sdl3
+        with:
+          version: release-3.2.20
+          target-arch: x64
+          parallel: "4"
+
+      - name: Configure NekoNOW
+        shell: bash
+        run: |
+          cmake -S opennow-qt -B build/opennow-qt-release \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_LIBDIR=lib \
+            -DOPENNOW_BUILD_VERSION="$OPENNOW_BUILD_VERSION" \
+            -DOPENNOW_UPDATE_ED25519_PUBLIC_KEY="$OPENNOW_UPDATE_PUBLIC_KEY" \
+            -DCMAKE_PREFIX_PATH="$RUNNER_TEMP/SDL-install"
+
+      - name: Compile NekoNOW
+        run: cmake --build build/opennow-qt-release --config Release --parallel 4
+
+      - name: Run Linux tests
+        run: ctest --test-dir build/opennow-qt-release -C Release --output-on-failure --parallel 4 --no-tests=error -LE interactive-desktop
+
+      - name: Create AppImage and Linux Mint DEB
+        uses: ./.github/actions/linux-package
+        with:
+          arch: x86_64
+          channel: nightly
+
+      - name: Upload Linux packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: nekonow-linux-x64-${{ steps.metadata.outputs.version }}
+          path: |
+            build/qt-packages/*.deb
+            build/qt-packages/*.AppImage
+            build/qt-packages/*.AppImage.zsync
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
