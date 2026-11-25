@@ -602,7 +602,8 @@ int AcceptanceSession::prepareWindow()
             if (auto *theme = findControl(u"renewThemeChoice"_s)) {
                 exercised = true;
                 const auto items = theme->property("items").value<QJSValue>();
-                if (items.property(u"length"_s).toInt() != 8) return EXIT_FAILURE;
+                auto *themePalette = m_engine.singletonInstance<QObject *>(u"OpenNOW"_s, u"Theme"_s);
+                if (!themePalette || items.property(u"length"_s).toInt() != themePalette->property("packs").toList().size()) return EXIT_FAILURE;
                 theme->setProperty("expanded", true);
                 if (!QMetaObject::invokeMethod(theme,"selected",Q_ARG(QVariant,QVariant(u"bone"_s)))
                     || setting(u"themePack"_s).toString() != u"bone"_s) return EXIT_FAILURE;
