@@ -3,19 +3,22 @@ import QtQuick
 
 QtObject {
     readonly property var packs: [
-        {id:"nocturne", name:"Nocturne", author:"OPENNOW", category:"Dark", detail:"SKY GLASS", bg:"#0B0F1A", lightBg:"#EEF3FA", mid:"#252A48", accent:"#7FD4FF", lightAccent:"#12638C"},
-        {id:"aurora", name:"Aurora", author:"OPENNOW", category:"Dark", detail:"MINT AURORA", bg:"#071A20", lightBg:"#EAF5F2", mid:"#16434A", accent:"#6EE7B7", lightAccent:"#126B4E"},
-        {id:"kraft", name:"Kraft", author:"OPENNOW", category:"Dark", detail:"WARM BRASS", bg:"#211D17", lightBg:"#F4ECDD", mid:"#756346", accent:"#D3A85C", lightAccent:"#796020"},
-        {id:"phosphor", name:"Phosphor", author:"OPENNOW", category:"High contrast", detail:"CRT GLOW", bg:"#07120B", lightBg:"#EDF8EA", mid:"#12351D", accent:"#6BFF8A", lightAccent:"#216C31"},
-        {id:"bone", name:"Bone", author:"OPENNOW", category:"Light", detail:"WARM MINIMAL", bg:"#EEE7DB", darkBg:"#201D18", mid:"#A89578", accent:"#7F6A4D", darkAccent:"#D3BA91"},
-        {id:"cobalt", name:"Cobalt", author:"OPENNOW", category:"Light", detail:"COBALT PAPER", bg:"#F7F9FF", darkBg:"#0E1730", mid:"#ADC4FF", accent:"#245BDB", darkAccent:"#93B5FF"},
-        {id:"hibiscus", name:"Hibiscus", author:"OPENNOW", category:"Dark", detail:"ROSE GLASS", bg:"#1F0C18", lightBg:"#FAEDF3", mid:"#642343", accent:"#FF6F9F", lightAccent:"#AA285B"},
-        {id:"chapel", name:"Chapel", author:"OPENNOW", category:"Dark", detail:"GOLD GLASS", bg:"#151225", lightBg:"#F3EFF9", mid:"#40355D", accent:"#FFD166", lightAccent:"#806017"}
+        {id:"nocturne", name:"Nocturne", author:"NEKONOW", category:"Dark", detail:"SKY GLASS", bg:"#0B0F1A", lightBg:"#EEF3FA", mid:"#252A48", accent:"#7FD4FF", lightAccent:"#12638C"},
+        {id:"aurora", name:"Aurora", author:"NEKONOW", category:"Dark", detail:"MINT AURORA", bg:"#071A20", lightBg:"#EAF5F2", mid:"#16434A", accent:"#6EE7B7", lightAccent:"#126B4E"},
+        {id:"kraft", name:"Kraft", author:"NEKONOW", category:"Dark", detail:"WARM BRASS", bg:"#211D17", lightBg:"#F4ECDD", mid:"#756346", accent:"#D3A85C", lightAccent:"#796020"},
+        {id:"phosphor", name:"Phosphor", author:"NEKONOW", category:"High contrast", detail:"CRT GLOW", bg:"#07120B", lightBg:"#EDF8EA", mid:"#12351D", accent:"#6BFF8A", lightAccent:"#216C31"},
+        {id:"bone", name:"Bone", author:"NEKONOW", category:"Light", detail:"WARM MINIMAL", bg:"#EEE7DB", darkBg:"#201D18", mid:"#A89578", accent:"#7F6A4D", darkAccent:"#D3BA91"},
+        {id:"cobalt", name:"Cobalt", author:"NEKONOW", category:"Light", detail:"COBALT PAPER", bg:"#F7F9FF", darkBg:"#0E1730", mid:"#ADC4FF", accent:"#245BDB", darkAccent:"#93B5FF"},
+        {id:"hibiscus", name:"Hibiscus", author:"NEKONOW", category:"Dark", detail:"ROSE GLASS", bg:"#1F0C18", lightBg:"#FAEDF3", mid:"#642343", accent:"#FF6F9F", lightAccent:"#AA285B"},
+        {id:"chapel", name:"Chapel", author:"NEKONOW", category:"Dark", detail:"GOLD GLASS", bg:"#151225", lightBg:"#F3EFF9", mid:"#40355D", accent:"#FFD166", lightAccent:"#806017"},
+        {id:"neko", name:"Sakura", author:"NEKONOW", category:"Light", detail:"SAKURA POTION", bg:"#FFF0F6", darkBg:"#281522", mid:"#F3B6D0", accent:"#E879A8", darkAccent:"#FF9BC5"},
+        {id:"rain", name:"Rain", author:"NEKONOW", category:"Dark", detail:"RAINY BLUE", bg:"#101D35", lightBg:"#EDF4FF", mid:"#294B78", accent:"#83B9FF", lightAccent:"#285EAA"},
+        {id:"fire", name:"Fire", author:"NEKONOW", category:"Dark", detail:"EMBER GLOW", bg:"#24150F", lightBg:"#FFF2E8", mid:"#75402B", accent:"#FF9A62", lightAccent:"#B94F24"}
     ]
     readonly property string mode: String(ShellStore.settings.appTheme || "auto")
     readonly property string themePack: ShellStore.previewThemePack !== ""
                                         ? ShellStore.previewThemePack
-                                        : String(ShellStore.settings.themePack || "nocturne")
+                                        : String(ShellStore.settings.themePack || "neko")
     readonly property var pack: packs.find(item => item.id === themePack) || packs[0]
     readonly property bool packLight: pack.category === "Light"
     readonly property bool systemLight: Qt.styleHints.colorScheme === Qt.Light
