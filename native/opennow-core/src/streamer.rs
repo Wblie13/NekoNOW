@@ -1344,7 +1344,12 @@ fn auto_av1_eligible(settings: &Value, capabilities: &Value, hdr: bool) -> bool 
         })
 }
 
-const EMBEDDED_RESOLUTIONS: [(u64, u64); 29] = [
+const EMBEDDED_RESOLUTIONS: [(u64, u64); 34] = [
+    (600, 400),
+    (640, 360),
+    (854, 480),
+    (960, 540),
+    (1024, 576),
     (1280, 720),
     (1366, 768),
     (1600, 900),
