@@ -1,4 +1,15 @@
 {
+  "nekonowBranding": {
+    "windowTitle": "NekoNOW",
+    "coreStarting": "The NekoNOW core is still starting",
+    "builtInPalettes": "·  BUILT-IN NEKONOW PALETTES",
+    "sakura": "Sakura",
+    "sakuraDescription": "Soft sakura-pink light shell.",
+    "rain": "Rain",
+    "rainDescription": "Cool rainy-blue shell.",
+    "fire": "Fire",
+    "fireDescription": "Warm ember-orange shell."
+  },
   "windowsSetup": {
     "destinationConflict": "This folder contains application directories that do not belong to OpenNOW. Choose a separate OpenNOW folder."
   },
