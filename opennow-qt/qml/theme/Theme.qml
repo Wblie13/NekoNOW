@@ -11,7 +11,7 @@ QtObject {
         {id:"cobalt", name:"Cobalt", author:"NEKONOW", category:"Light", detail:"COBALT PAPER", bg:"#F7F9FF", darkBg:"#0E1730", mid:"#ADC4FF", accent:"#245BDB", darkAccent:"#93B5FF"},
         {id:"hibiscus", name:"Hibiscus", author:"NEKONOW", category:"Dark", detail:"ROSE GLASS", bg:"#1F0C18", lightBg:"#FAEDF3", mid:"#642343", accent:"#FF6F9F", lightAccent:"#AA285B"},
         {id:"chapel", name:"Chapel", author:"NEKONOW", category:"Dark", detail:"GOLD GLASS", bg:"#151225", lightBg:"#F3EFF9", mid:"#40355D", accent:"#FFD166", lightAccent:"#806017"},
-        {id:"neko", name:"Sakura", author:"NEKONOW", category:"Light", detail:"SAKURA POTION", bg:"#FFF0F6", darkBg:"#281522", mid:"#F3B6D0", accent:"#E879A8", darkAccent:"#FF9BC5"},
+        {id:"neko", name:"Sakura", author:"NEKONOW", category:"Light", detail:"SAKURA POTION", bg:"#FFF0F6", darkBg:"#281522", mid:"#F3B6D0", accent:"#E879A8", lightAccent:"#AA285B", darkAccent:"#FF9BC5"},
         {id:"rain", name:"Rain", author:"NEKONOW", category:"Dark", detail:"RAINY BLUE", bg:"#101D35", lightBg:"#EDF4FF", mid:"#294B78", accent:"#83B9FF", lightAccent:"#285EAA"},
         {id:"fire", name:"Fire", author:"NEKONOW", category:"Dark", detail:"EMBER GLOW", bg:"#24150F", lightBg:"#FFF2E8", mid:"#75402B", accent:"#FF9A62", lightAccent:"#B94F24"}
     ]
