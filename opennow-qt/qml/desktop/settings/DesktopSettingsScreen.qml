@@ -273,7 +273,10 @@ FocusScope {
             hibiscus: { name: qsTr("Sunset"), blurb: qsTr("Wine shell with a rose focus ring."), accent: "#FF8A80" },
             chapel: { name: qsTr("Chapel"), blurb: qsTr("Violet night shell with a gold focus ring."), accent: "#FFD166" },
             bone: { name: qsTr("Bone"), blurb: qsTr("Light paper shell for daytime use."), accent: "#C6A46A" },
-            cobalt: { name: qsTr("Cobalt"), blurb: qsTr("Light blue-white shell with a cobalt focus ring."), accent: "#7FD4FF" }
+            cobalt: { name: qsTr("Cobalt"), blurb: qsTr("Light blue-white shell with a cobalt focus ring."), accent: "#7FD4FF" },
+            neko: { name: qsTr("Sakura"), blurb: qsTr("Soft sakura-pink light shell."), accent: "#E879A8" },
+            rain: { name: qsTr("Rain"), blurb: qsTr("Cool rainy-blue shell."), accent: "#83B9FF" },
+            fire: { name: qsTr("Fire"), blurb: qsTr("Warm ember-orange shell."), accent: "#FF9A62" }
         }
         return packs[id] || { name: String(id || qsTr("Theme")), blurb: qsTr("Installed theme pack.") }
     }
