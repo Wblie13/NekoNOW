@@ -32,7 +32,7 @@ FocusScope {
         if (!selectedTheme)
             return
         if (!ShellStore.ready) {
-            statusMessage = qsTr("The OpenNOW core is still starting")
+            statusMessage = qsTr("The NekoNOW core is still starting")
             return
         }
         ShellStore.applySetting("themePack", selectedTheme.id)
@@ -297,7 +297,7 @@ FocusScope {
                 Text {
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
-                    text: root.statusMessage + qsTr("  ·  BUILT-IN OPENNOW PALETTES")
+                    text: root.statusMessage + qsTr("  ·  BUILT-IN NEKONOW PALETTES")
                     color: Theme.textMuted
                     font.family: Theme.monoFont
                     font.pixelSize: 11
