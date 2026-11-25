@@ -74,7 +74,7 @@ QtObject {
 
     function checkResolutionPresets(parent) {
         const added = [
-            ["1112x834", "4:3"], ["1024x768", "4:3"], ["1366x768", "16:9"],
+            ["600x400", "LOW RESOLUTION"], ["640x360", "LOW RESOLUTION"], ["854x480", "LOW RESOLUTION"], ["960x540", "LOW RESOLUTION"], ["1024x576", "LOW RESOLUTION"],\n            ["1112x834", "4:3"], ["1024x768", "4:3"], ["1366x768", "16:9"],
             ["1280x1024", "5:4"], ["1680x720", "21:9"], ["1600x1200", "4:3"], ["3456x2160", "16:10"],
             ["3640x1080", "CUSTOM"]
         ]
@@ -85,7 +85,7 @@ QtObject {
         ShellStore.subscription = null
         const items = ShellStore.resolutionItems()
         const choices = sharedResolutionChoices()
-        check(choices.length === existing.length + added.length, "all eight requested sizes are added")
+        check(choices.length === existing.length + added.length, "all thirteen requested sizes are added")
         check(new Set(choices.map(item => item.value)).size === choices.length, "all preset sizes are unique")
         check(JSON.stringify(choices.filter(item => existing.indexOf(item.value) >= 0).map(item => item.value)) === JSON.stringify(existing),
             "existing preset sizes and their order are preserved")
